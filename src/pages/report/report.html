@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Report
+      {{test}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <button ion-button (click)="buttonClicked()">Default</button>
+  <color-picker [hexColor]="color" (colorChanged)="setColor($event)"(colorTouchStart)="colorTouchStart()" (colorTouchEnd)="colorTouchEnd()"></color-picker>
+</ion-content>
+

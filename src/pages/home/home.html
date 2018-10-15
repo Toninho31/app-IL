@@ -1,0 +1,145 @@
+<ion-header>
+  <!-- <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar> -->
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="moduleSelected" color="primary">
+      <ion-segment-button value="module1">
+        Module 1
+      </ion-segment-button>
+      <ion-segment-button value="module2">
+        Module 2
+      </ion-segment-button>
+      <ion-segment-button value="module3">
+        Module 3
+      </ion-segment-button>
+      <ion-segment-button value="allmodules">
+        All modules
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding >
+  <ion-card>
+    <ion-card-header>
+      Color
+    </ion-card-header>
+    <ion-card-content>
+      <span [ngSwitch]="moduleSelected">
+          <color-picker *ngSwitchCase="'module1'" [(hexColor)]="modules[moduleSelected].colorValue" (colorChanged)="setColor($event)" (colorTouchStart)="colorTouchStart()"
+          (colorTouchEnd)="colorTouchEnd()"></color-picker>
+          <color-picker *ngSwitchCase="'module2'" [(hexColor)]="modules[moduleSelected].colorValue" (colorChanged)="setColor($event)" (colorTouchStart)="colorTouchStart()"
+          (colorTouchEnd)="colorTouchEnd()"></color-picker>
+          <color-picker *ngSwitchCase="'module3'" [(hexColor)]="modules[moduleSelected].colorValue" (colorChanged)="setColor($event)" (colorTouchStart)="colorTouchStart()"
+          (colorTouchEnd)="colorTouchEnd()"></color-picker>
+      </span>
+      
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label stacked>R</ion-label>
+              <ion-input type="text" [(ngModel)]="modules[moduleSelected].rgb.r"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label stacked>G</ion-label>
+              <ion-input type="text" [(ngModel)]="modules[moduleSelected].rgb.g"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label stacked>B</ion-label>
+              <ion-input type="text" [(ngModel)]="modules[moduleSelected].rgb.b"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label stacked>Hex</ion-label>
+              <ion-input type="text" [(ngModel)]="modules[moduleSelected].colorValue"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-card>
+
+    <ion-card-header>
+        <ion-item>
+            <ion-icon name="brightness"></ion-icon>
+            Brightness
+            <ion-badge item-end>{{modules[moduleSelected].brightness}}</ion-badge>
+          </ion-item>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-range min="0" max="100" step="1" [(ngModel)]="modules[moduleSelected].brightness">
+        <ion-icon small range-left name="sunny"></ion-icon>
+        <ion-icon range-right name="sunny"></ion-icon>
+      </ion-range>
+    </ion-card-content>
+
+  </ion-card>
+  <ion-grid>
+      <ion-row>
+        <ion-col>
+            <ion-card>
+                <ion-card-header>
+                  Animations
+                </ion-card-header>
+            
+                <ion-card-content>
+                  <ion-segment [(ngModel)]="animation" color="primary" (ionChange)="segmentChanged($event)">
+                    <ion-segment-button value="blinking">
+                      Blinking
+                    </ion-segment-button>
+                    <ion-segment-button value="chase">
+                      Chase
+                    </ion-segment-button>
+                    <ion-segment-button value="progressive">
+                      Progressive
+                    </ion-segment-button>
+                  </ion-segment>
+                </ion-card-content>
+            
+              </ion-card>
+        </ion-col>
+        <ion-col>
+            <ion-card>
+                <ion-card-header>
+                 Number of leds
+                </ion-card-header>
+            
+                <ion-card-content>
+                  <ion-segment [(ngModel)]="numberleds" color="primary" (ionChange)="segmentChanged($event)">
+                    <ion-segment-button value="allleds">
+                      All leds
+                    </ion-segment-button>
+                    <ion-segment-button value="halfleds">
+                      1/2 led
+                    </ion-segment-button>
+                  </ion-segment>
+                </ion-card-content>
+            
+              </ion-card>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+
+
+
+
+
+
+
+</ion-content>
